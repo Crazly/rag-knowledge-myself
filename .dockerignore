@@ -1,0 +1,8 @@
+.git
+.env.example
+*.pyc
+__pycache__
+.DS_Store
+data/
+docs/
+ssl/

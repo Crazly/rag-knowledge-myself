@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="documents-container">
+    <h2>文档管理</h2>
+
+    <form id="upload-form" hx-encoding="multipart/form-data" hx-post="/api/documents/upload" hx-target="#doc-list" hx-swap="afterbegin">
+        <input type="file" name="file" accept=".pdf,.md,.txt,.docx,.xlsx" required>
+        <button type="submit">上传</button>
+    </form>
+    <div id="upload-status"></div>
+
+    <h3>文档列表</h3>
+    <div id="doc-list" hx-get="/api/documents" hx-trigger="load, every 5s">
+        加载中...
+    </div>
+</div>
+{% endblock %}

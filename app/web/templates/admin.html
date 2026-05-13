@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+    <h2>系统管理</h2>
+
+    <h3>系统状态</h3>
+    <div id="stats"
+         hx-get="/api/admin/stats"
+         hx-trigger="load, every 10s"
+         hx-swap="innerHTML">
+        加载中...
+    </div>
+
+    <h3 style="margin-top:24px;">索引操作</h3>
+    <button hx-post="/api/admin/reindex"
+            hx-target="#reindex-status"
+            hx-swap="innerHTML"
+            onclick="this.disabled=true;this.textContent='重建中...'">
+        全量重建索引
+    </button>
+    <span id="reindex-status"></span>
+    <p class="hint" style="margin-top:8px;">重建将清除所有向量并重新处理全部文档，期间不影响检索但可能部分文档暂时不可用。</p>
+</div>
+{% endblock %}
